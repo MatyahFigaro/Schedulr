@@ -1,12 +1,16 @@
 {
-  "name": "Schedulr",
+  "name": "schedulr",
   "version": "0.0.1",
   "private": true,
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",
     "lint": "turbo lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "check-types": "turbo check-types",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "db:generate": "turbo run db:generate",
+    "db:migrate": "turbo run db:migrate",
+    "db:deploy": "turbo run db:deploy"
   },
   "devDependencies": {
     "@workspace/eslint-config": "workspace:*",
