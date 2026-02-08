@@ -1,1 +1,1 @@
-export const a = '';
+export * from './schemas/login-schema';

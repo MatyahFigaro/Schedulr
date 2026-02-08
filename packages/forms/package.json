@@ -2,17 +2,16 @@
   "name": "@workspace/forms",
   "version": "0.0.0",
   "dependencies": {
-    "react": "^19.2.4",
-    "react-dom": "^19.2.4"
+    "zod": "^3.25.76"
   },
   "devDependencies": {
     "@types/node": "^25.1.0",
     "@workspace/eslint-config": "workspace:*",
     "@workspace/typescript-config": "workspace:*",
     "eslint": "^9.39.2",
-    "tailwindcss": "^4.1.18",
-    "@types/react": "^19.2.10",
-    "@types/react-dom": "^19.2.3",
     "typescript": "^5.9.3"
+  },
+  "exports": {
+    ".": "./src/index.ts"
   }
 }
