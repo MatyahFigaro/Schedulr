@@ -1,4 +1,5 @@
 'use client';
+import { emailLoginExists } from '@/app/login/actions';
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
   LoginEmailInput,
@@ -13,7 +14,11 @@ import { Label } from '@workspace/ui/label';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
-export const LoginCard = () => {
+interface LoginCardProps {
+  // onFormSubmit: (values: LoginPasswordInput) => Promise<void>;
+}
+
+export const LoginCard = ({}: LoginCardProps) => {
   const [showPassword, setShowPassword] = useState(false);
 
   const emailForm = useForm<LoginEmailInput>({
@@ -28,10 +33,9 @@ export const LoginCard = () => {
     mode: 'onSubmit',
   });
 
-  const onEmailSubmit = async (values: LoginEmailInput) => {
-    // TODO: remplacer par un appel API
-    const emailFound = values.email.trim().length > 0;
-
+  const handleEmailSubmission = async (values: LoginEmailInput) => {
+    const emailFound = await emailLoginExists(values.email);
+    console.log('email found', emailFound);
     if (emailFound) {
       setShowPassword(true);
       passwordForm.setValue('email', values.email);
@@ -40,8 +44,8 @@ export const LoginCard = () => {
     }
   };
 
-  const onPasswordSubmit = async (values: LoginPasswordInput) => {
-    // TODO: call login API
+  const handleLoginSubmit = async (values: LoginPasswordInput) => {
+    // onFormSubmit(values);
     console.log(values);
   };
 
@@ -49,7 +53,7 @@ export const LoginCard = () => {
     <Card className="w-full max-w-sm p-8">
       <CardContent className="p-0">
         {!showPassword ? (
-          <form onSubmit={emailForm.handleSubmit(onEmailSubmit)}>
+          <form onSubmit={emailForm.handleSubmit(handleEmailSubmission)}>
             <div className="flex flex-col gap-6">
               <div className="grid gap-2">
                 <Label htmlFor="email" className="text-lg">
@@ -75,7 +79,7 @@ export const LoginCard = () => {
             </div>
           </form>
         ) : (
-          <form onSubmit={passwordForm.handleSubmit(onPasswordSubmit)}>
+          <form onSubmit={passwordForm.handleSubmit(handleLoginSubmit)}>
             <div className="flex flex-col gap-6">
               <div className="grid gap-2">
                 <Label htmlFor="email" className="text-lg">
