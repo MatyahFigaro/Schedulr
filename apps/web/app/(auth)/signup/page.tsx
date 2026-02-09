@@ -5,9 +5,9 @@ import Link from 'next/link';
 export default function Signup() {
   return (
     <main className="min-h-svh">
-      <section className="container mx-auto px-4 py-12 md:py-16 lg:py-20">
-        <div className="flex flex-col gap-10 lg:flex-row lg:gap-16">
-          <div className="space-y-6 lg:flex-1">
+      <section className="container mx-auto px-4 py-10 sm:py-12 lg:py-20">
+        <div className="flex flex-col gap-10 divide-y divide-border lg:flex-row lg:gap-16 lg:divide-y-0 lg:divide-x">
+          <div className="space-y-6 lg:flex-1 lg:pr-12 pb-10 lg:pb-0">
             <header className="space-y-3">
               <h1 className="text-4xl leading-tight md:text-5xl">
                 Connectez-vous à votre compte
@@ -45,7 +45,7 @@ export default function Signup() {
             </nav>
           </div>
 
-          <div className="space-y-6 lg:flex-1 lg:border-l lg:border-border lg:pl-12">
+          <div className="space-y-6 lg:flex-1 lg:pl-12">
             <header className="space-y-3">
               <h1 className="text-4xl leading-tight md:text-5xl">
                 Connectez-vous à votre compte
