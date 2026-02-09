@@ -11,7 +11,7 @@ import {
 import { Card, CardContent, CardFooter } from '@workspace/ui/card';
 import { Input } from '@workspace/ui/input';
 import { Label } from '@workspace/ui/label';
-import { emailLoginExists } from '@/app/login/actions';
+import { emailLoginExists } from '@/app/(auth)/login/actions';
 import Image from 'next/image';
 
 // TODO: Add google sigin/signup

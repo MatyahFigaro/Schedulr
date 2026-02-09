@@ -1,4 +1,4 @@
-import { LoginCard } from '@/components/login-card';
+import { LoginCard } from '@/app/(auth)/_components/login-card';
 import { MoveRight } from 'lucide-react';
 import Link from 'next/link';
 
