@@ -1,6 +1,7 @@
 'use client';
 import { emailLoginExists } from '@/app/login/actions';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { signIn, signUp } from '@workspace/auth/react-client';
 import {
   LoginEmailInput,
   loginEmailSchema,
@@ -35,7 +36,7 @@ export const LoginCard = ({}: LoginCardProps) => {
 
   const handleEmailSubmission = async (values: LoginEmailInput) => {
     const emailFound = await emailLoginExists(values.email);
-    console.log('email found', emailFound);
+
     if (emailFound) {
       setShowPassword(true);
       passwordForm.setValue('email', values.email);
@@ -46,7 +47,11 @@ export const LoginCard = ({}: LoginCardProps) => {
 
   const handleLoginSubmit = async (values: LoginPasswordInput) => {
     // onFormSubmit(values);
-    console.log(values);
+    await signUp.email({
+      email: values.email,
+      password: values.password,
+      name: '',
+    });
   };
 
   return (

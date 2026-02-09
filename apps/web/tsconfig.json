@@ -5,7 +5,8 @@
     "paths": {
       "@/*": ["./*"],
       "@workspace/ui/*": ["../../packages/ui/src/components/*"],
-      "@workspace/forms/*": ["../../packages/forms/src/*"]
+      "@workspace/forms/*": ["../../packages/forms/src/*"],
+      "@workspace/auth/*": ["../../packages/auth/src/*"]
     },
     "plugins": [
       {
