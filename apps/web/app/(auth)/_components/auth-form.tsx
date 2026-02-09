@@ -60,7 +60,7 @@ export const AuthStepsForm = ({
   return (
     <>
       <form onSubmit={form.handleSubmit(handleSubmit)}>
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-6 pb-6">
           <div className="grid gap-2">
             <Label htmlFor="email" className="text-lg">
               Email

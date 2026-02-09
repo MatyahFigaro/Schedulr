@@ -8,7 +8,7 @@ import { AuthStepsForm } from './auth-form';
 
 export const SignInCard = () => {
   return (
-    <Card className="w-full max-w-sm p-8">
+    <Card className="w-full max-w-sm p-6 sm:p-8">
       <CardContent className="p-0">
         <AuthStepsForm
           submitLabel="Se connecter"

@@ -18,7 +18,7 @@ export default function Signup() {
               </p>
             </header>
 
-            <div className="space-y-4">
+            <div>
               <SignupCard />
               <p className="text-sm text-muted-foreground">
                 Continuez avec Google ou Microsoft pour connecter votre
@@ -56,7 +56,7 @@ export default function Signup() {
               </p>
             </header>
 
-            <div className="space-y-4">
+            <div>
               <SignupCard />
               <p className="text-sm text-muted-foreground">
                 Continuez avec Google ou Microsoft pour connecter votre
