@@ -12,6 +12,7 @@ import { Card, CardContent, CardFooter } from '@workspace/ui/card';
 import { Input } from '@workspace/ui/input';
 import { Label } from '@workspace/ui/label';
 import { emailLoginExists } from '@/app/login/actions';
+import Image from 'next/image';
 
 type Step = 'email' | 'password';
 
@@ -121,21 +122,33 @@ export const LoginCard = () => {
         </form>
       </CardContent>
 
-      <CardFooter className="flex-col gap-2 bg-transparent px-0 pb-8">
+      <CardFooter className="flex flex-col gap-2 bg-transparent px-0 pb-8">
         <Button
           type="button"
-          className="w-full text-lg"
+          className="w-full text-lg items-center gap-4"
           size="lg"
           variant="secondary"
         >
+          <Image
+            src="/logos/google-icon.svg"
+            alt="Google icon"
+            width={24}
+            height={24}
+          />
           Poursuivre avec Google
         </Button>
         <Button
           type="button"
-          className="w-full text-lg"
+          className="w-full text-lg gap-4"
           size="lg"
           variant="secondary"
         >
+          <Image
+            src="/logos/microsoft-icon.svg"
+            alt="Microsoft icon"
+            width={24}
+            height={24}
+          />
           Poursuivre avec Microsoft
         </Button>
       </CardFooter>
