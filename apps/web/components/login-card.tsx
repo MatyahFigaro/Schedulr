@@ -1,103 +1,82 @@
 'use client';
-import { emailLoginExists } from '@/app/login/actions';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { signIn, signUp } from '@workspace/auth/react-client';
+import { Button } from '@workspace/ui/button';
+import { signIn, useSession } from '@workspace/auth/react-client';
 import {
-  LoginEmailInput,
-  loginEmailSchema,
   LoginPasswordInput,
   loginPasswordSchema,
 } from '@workspace/forms/index';
-import { Button } from '@workspace/ui/button';
 import { Card, CardContent, CardFooter } from '@workspace/ui/card';
 import { Input } from '@workspace/ui/input';
 import { Label } from '@workspace/ui/label';
-import { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { emailLoginExists } from '@/app/login/actions';
 
-interface LoginCardProps {
-  // onFormSubmit: (values: LoginPasswordInput) => Promise<void>;
-}
+type Step = 'email' | 'password';
 
-export const LoginCard = ({}: LoginCardProps) => {
-  const [showPassword, setShowPassword] = useState(false);
+export const LoginCard = () => {
+  const [step, setStep] = useState<Step>('email');
+  const { data } = useSession();
 
-  const emailForm = useForm<LoginEmailInput>({
-    resolver: zodResolver(loginEmailSchema),
-    defaultValues: { email: '' },
-    mode: 'onSubmit',
-  });
+  console.log(data);
 
-  const passwordForm = useForm<LoginPasswordInput>({
+  const form = useForm<LoginPasswordInput>({
     resolver: zodResolver(loginPasswordSchema),
     defaultValues: { email: '', password: '' },
     mode: 'onSubmit',
   });
 
-  const handleEmailSubmission = async (values: LoginEmailInput) => {
-    const emailFound = await emailLoginExists(values.email);
+  const handleEmailStep = async () => {
+    const isValid = await form.trigger('email');
+    if (!isValid) return;
+
+    const email = form.getValues('email');
+    const emailFound = await emailLoginExists(email);
 
     if (emailFound) {
-      setShowPassword(true);
-      passwordForm.setValue('email', values.email);
-    } else {
-      emailForm.setError('email', { message: 'Email non trouvé' });
+      setStep('password');
+      return;
     }
+    form.setError('email', { message: 'Email non trouvé' });
   };
 
-  const handleLoginSubmit = async (values: LoginPasswordInput) => {
-    // onFormSubmit(values);
-    await signUp.email({
+  const onSubmit = async (values: LoginPasswordInput) => {
+    if (step === 'email') return;
+    await signIn.email({
       email: values.email,
       password: values.password,
-      name: '',
     });
   };
+
+  const isSubmitting = form.formState.isSubmitting;
 
   return (
     <Card className="w-full max-w-sm p-8">
       <CardContent className="p-0">
-        {!showPassword ? (
-          <form onSubmit={emailForm.handleSubmit(handleEmailSubmission)}>
-            <div className="flex flex-col gap-6">
-              <div className="grid gap-2">
-                <Label htmlFor="email" className="text-lg">
-                  Email
-                </Label>
-                <Input
-                  className="text-lg placeholder:text-lg h-12"
-                  id="email"
-                  type="email"
-                  placeholder="Entrez votre e-mail"
-                  aria-invalid={!!emailForm.formState.errors.email}
-                  {...emailForm.register('email')}
-                />
-                {emailForm.formState.errors.email && (
-                  <p className="text-sm text-red-500">
-                    {emailForm.formState.errors.email.message}
-                  </p>
-                )}
-              </div>
-              <Button type="submit" className="w-full text-lg" size="lg">
-                Poursuivre
-              </Button>
+        <form onSubmit={form.handleSubmit(onSubmit)}>
+          <div className="flex flex-col gap-6">
+            <div className="grid gap-2">
+              <Label htmlFor="email" className="text-lg">
+                Email
+              </Label>
+              <Input
+                className="text-lg placeholder:text-lg h-12"
+                id="email"
+                type="email"
+                placeholder="Entrez votre e-mail"
+                aria-invalid={!!form.formState.errors.email}
+                readOnly={step === 'password'}
+                {...form.register('email')}
+              />
+              {form.formState.errors.email && (
+                <p className="text-sm text-red-500">
+                  {form.formState.errors.email.message}
+                </p>
+              )}
             </div>
-          </form>
-        ) : (
-          <form onSubmit={passwordForm.handleSubmit(handleLoginSubmit)}>
-            <div className="flex flex-col gap-6">
-              <div className="grid gap-2">
-                <Label htmlFor="email" className="text-lg">
-                  Email
-                </Label>
-                <Input
-                  className="text-lg placeholder:text-lg h-12"
-                  id="email"
-                  type="email"
-                  disabled
-                  {...passwordForm.register('email')}
-                />
-              </div>
+
+            {step === 'password' && (
               <div className="grid gap-2">
                 <Label htmlFor="password" className="text-lg">
                   Mot de passe
@@ -107,26 +86,44 @@ export const LoginCard = ({}: LoginCardProps) => {
                   id="password"
                   type="password"
                   placeholder="Entrez votre mot de passe"
-                  aria-invalid={!!passwordForm.formState.errors.password}
-                  {...passwordForm.register('password')}
+                  aria-invalid={!!form.formState.errors.password}
+                  {...form.register('password')}
                 />
-                {passwordForm.formState.errors.password && (
+                {form.formState.errors.password && (
                   <p className="text-sm text-red-500">
-                    {passwordForm.formState.errors.password.message}
+                    {form.formState.errors.password.message}
                   </p>
                 )}
               </div>
-              <Button type="submit" className="w-full text-lg" size="lg">
+            )}
+
+            {step === 'email' ? (
+              <Button
+                type="button"
+                className="w-full text-lg"
+                size="lg"
+                onClick={handleEmailStep}
+                disabled={isSubmitting}
+              >
+                Poursuivre
+              </Button>
+            ) : (
+              <Button
+                type="submit"
+                className="w-full text-lg"
+                size="lg"
+                disabled={isSubmitting}
+              >
                 Se connecter
               </Button>
-            </div>
-          </form>
-        )}
+            )}
+          </div>
+        </form>
       </CardContent>
 
       <CardFooter className="flex-col gap-2 bg-transparent px-0 pb-8">
         <Button
-          type="submit"
+          type="button"
           className="w-full text-lg"
           size="lg"
           variant="secondary"
@@ -134,7 +131,7 @@ export const LoginCard = ({}: LoginCardProps) => {
           Poursuivre avec Google
         </Button>
         <Button
-          type="submit"
+          type="button"
           className="w-full text-lg"
           size="lg"
           variant="secondary"
