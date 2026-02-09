@@ -12,7 +12,7 @@ import { Label } from '@workspace/ui/label';
 
 type Step = 'email' | 'password';
 
-type EmailContinueResult = { ok: true } | { ok: false; error: string };
+type EmailContinueResult = { ok: boolean; error?: string };
 
 interface AuthStepsFormProps {
   submitLabel: string;

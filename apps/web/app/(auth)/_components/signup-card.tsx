@@ -14,8 +14,8 @@ export function SignupCard() {
       onEmailContinue={async (email) => {
         const emailFound = await emailLoginExists(email);
         return emailFound
-          ? { ok: true }
-          : { ok: false, error: 'Email non trouvé' };
+          ? { ok: false, error: 'Email déjà utilisé' }
+          : { ok: true };
       }}
       onSubmit={async (values) => {
         await signUp.email({
