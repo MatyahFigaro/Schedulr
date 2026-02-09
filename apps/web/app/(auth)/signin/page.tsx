@@ -1,4 +1,4 @@
-import { LoginCard } from '@/app/(auth)/_components/login-card';
+import { SignInCard } from '@/app/(auth)/_components/signin-card';
 import { MoveRight } from 'lucide-react';
 import Link from 'next/link';
 
@@ -11,7 +11,7 @@ export default function Login() {
             Connectez-vous à votre compte
           </h1>
         </div>
-        <LoginCard />
+        <SignInCard />
         <div className="flex items-center justify-center py-4 w-108 max-w-249 text-center">
           <p className="text-xl flex flex-col items-center justify-center gap-2">
             Vous n&apos;avez pas de compte ?
