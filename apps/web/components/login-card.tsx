@@ -14,6 +14,9 @@ import { Label } from '@workspace/ui/label';
 import { emailLoginExists } from '@/app/login/actions';
 import Image from 'next/image';
 
+// TODO: Add google sigin/signup
+// TODO: Add microscroft sign/signup
+
 type Step = 'email' | 'password';
 
 export const LoginCard = () => {
