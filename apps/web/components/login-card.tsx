@@ -71,6 +71,7 @@ export const LoginCard = () => {
                 placeholder="Entrez votre e-mail"
                 aria-invalid={!!form.formState.errors.email}
                 readOnly={step === 'password'}
+                disabled={step === 'password'}
                 {...form.register('email')}
               />
               {form.formState.errors.email && (
@@ -149,8 +150,8 @@ export const LoginCard = () => {
           <Image
             src="/logos/microsoft-icon.svg"
             alt="Microsoft icon"
-            width={24}
-            height={24}
+            width={28}
+            height={28}
           />
           Poursuivre avec Microsoft
         </Button>
