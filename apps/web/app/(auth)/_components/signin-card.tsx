@@ -5,8 +5,15 @@ import { signIn } from '@workspace/auth/react-client';
 import Image from 'next/image';
 import { emailLoginExists } from '@/app/(auth)/signin/actions';
 import { AuthStepsForm } from './auth-form';
+import { useCallback } from 'react';
 
 export const SignInCard = () => {
+  const signInWithGoogle = useCallback(async () => {
+    await signIn.social({
+      provider: 'google',
+    });
+  }, []);
+
   return (
     <Card className="w-full max-w-sm p-6 sm:p-8">
       <CardContent className="p-0">
@@ -38,6 +45,7 @@ export const SignInCard = () => {
                 className="w-full text-lg items-center gap-4"
                 size="lg"
                 variant="secondary"
+                onClick={signInWithGoogle}
               >
                 <Image
                   src="/logos/google-icon.svg"
