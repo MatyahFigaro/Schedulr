@@ -4,7 +4,7 @@ import { AuthSwitchLink } from '../_components/auht-switch-link';
 
 export default function Signup() {
   return (
-    <section className="container mx-auto px-4 py-10 sm:py-12 lg:py-20">
+    <section className="container mx-auto px-4 py-10 sm:py-12 lg:py-48">
       <div className="flex flex-col gap-10 divide-y divide-border lg:flex-row lg:gap-16 lg:divide-y-0 lg:divide-x">
         <div className="space-y-6 lg:flex-1 lg:pr-12 pb-10 lg:pb-0">
           <header className="space-y-3">

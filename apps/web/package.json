@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
+    "@radix-ui/react-visually-hidden": "^1.2.4",
     "@workspace/auth": "workspace:*",
     "@workspace/data-access": "workspace:*",
     "@workspace/db": "workspace:*",
