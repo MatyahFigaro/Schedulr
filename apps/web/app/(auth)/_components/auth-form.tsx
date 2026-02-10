@@ -13,10 +13,11 @@ import { Label } from '@workspace/ui/label';
 type Step = 'email' | 'password';
 
 type EmailContinueResult = { ok: boolean; error?: string };
+type OnSubmitResult = { ok: boolean; error?: Error };
 
 interface AuthStepsFormProps {
   submitLabel: string;
-  onSubmit: (values: LoginPasswordInput) => Promise<void>;
+  onSubmit: (values: LoginPasswordInput) => Promise<OnSubmitResult>;
   onEmailContinue?: (email: string) => Promise<EmailContinueResult>;
   footer?: React.ReactNode;
 }
@@ -52,7 +53,12 @@ export const AuthStepsForm = ({
 
   const handleSubmit = async (values: LoginPasswordInput) => {
     if (step === 'email') return;
-    await onSubmit(values);
+    const result = await onSubmit(values);
+
+    if (!result.ok) {
+      form.setError('password', { message: result.error?.message });
+      return;
+    }
   };
 
   const isSubmitting = form.formState.isSubmitting;

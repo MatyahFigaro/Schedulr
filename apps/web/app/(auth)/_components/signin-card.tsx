@@ -19,10 +19,17 @@ export const SignInCard = () => {
               : { ok: false, error: 'Email non trouvé' };
           }}
           onSubmit={async (values) => {
-            await signIn.email({
+            const { error } = await signIn.email({
               email: values.email,
               password: values.password,
+              callbackURL: '/',
             });
+
+            if (error) {
+              return { ok: false, error: new Error('Mot de passe incorrect') };
+            }
+
+            return { ok: true };
           }}
           footer={
             <CardFooter className="flex flex-col gap-2 bg-transparent px-0 pt-6 pb-8">
