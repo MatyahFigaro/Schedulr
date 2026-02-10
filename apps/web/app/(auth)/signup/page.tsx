@@ -46,16 +46,16 @@ export default function Signup() {
                 <button
                   type="button"
                   className="self-start bg-blue-100 text-blue-700 font-medium px-4 py-1 rounded-full text-sm mb-2"
-                  aria-label="Essayez le plan Teams gratuitement"
+                  aria-label="Essayez les fonctionnalités Premium gratuitement"
                 >
-                  Essayez le plan Teams gratuitement
+                  Essayez les fonctionnalités Premium gratuitement
                 </button>
                 <h2
-                  id="teams-features-title"
+                  id="premium-features-title"
                   className="text-2xl font-bold leading-snug"
                 >
-                  Explorez les fonctionnalités premium avec votre essai gratuit
-                  de 14 jours du plan Teams
+                  Explorez les fonctionnalités Premium avec votre essai gratuit
+                  de 14 jours
                 </h2>
                 <ul
                   className="space-y-3 text-base text-zinc-700 dark:text-zinc-200"
@@ -67,32 +67,8 @@ export default function Signup() {
                       size={20}
                       aria-hidden="true"
                     />
-                    <span>Réunions multipersonnes et co-organisées</span>
-                  </li>
-                  <li className="flex items-start gap-2" role="listitem">
-                    <Check
-                      className="text-blue-600 mt-1"
-                      size={20}
-                      aria-hidden="true"
-                    />
-                    <span>Distribution des réunions Round Robin</span>
-                  </li>
-                  <li className="flex items-start gap-2" role="listitem">
-                    <Check
-                      className="text-blue-600 mt-1"
-                      size={20}
-                      aria-hidden="true"
-                    />
-                    <span>Rappels de réunion, suivis et notifications</span>
-                  </li>
-                  <li className="flex items-start gap-2" role="listitem">
-                    <Check
-                      className="text-blue-600 mt-1"
-                      size={20}
-                      aria-hidden="true"
-                    />
                     <span>
-                      Connectez des outils de paiement tels que PayPal ou Stripe
+                      Planification de réunions avec plusieurs participants
                     </span>
                   </li>
                   <li className="flex items-start gap-2" role="listitem">
@@ -101,7 +77,38 @@ export default function Signup() {
                       size={20}
                       aria-hidden="true"
                     />
-                    <span>Supprimer la marque Calendly</span>
+                    <span>
+                      Distribution intelligente des créneaux (Round Robin)
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-2" role="listitem">
+                    <Check
+                      className="text-blue-600 mt-1"
+                      size={20}
+                      aria-hidden="true"
+                    />
+                    <span>
+                      Rappels automatiques et notifications personnalisées
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-2" role="listitem">
+                    <Check
+                      className="text-blue-600 mt-1"
+                      size={20}
+                      aria-hidden="true"
+                    />
+                    <span>
+                      Intégration de solutions de paiement (PayPal, Stripe,
+                      etc.)
+                    </span>
+                  </li>
+                  <li className="flex items-start gap-2" role="listitem">
+                    <Check
+                      className="text-blue-600 mt-1"
+                      size={20}
+                      aria-hidden="true"
+                    />
+                    <span>Suppression de la marque Schedulr</span>
                   </li>
                 </ul>
                 <footer className="pt-6" aria-label="Clients de confiance">
