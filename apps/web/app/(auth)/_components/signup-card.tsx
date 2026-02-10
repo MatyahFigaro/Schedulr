@@ -1,6 +1,6 @@
 'use client';
 
-import { signUp } from '@workspace/auth/react-client';
+import { signIn, signUp } from '@workspace/auth/react-client';
 import { Button } from '@workspace/ui/button';
 import { CardFooter } from '@workspace/ui/card';
 import { emailLoginExists } from '../signin/actions';
@@ -40,6 +40,11 @@ export function SignupCard() {
             className="w-full text-lg items-center gap-4"
             size="lg"
             variant="secondary"
+            onClick={async () => {
+              await signIn.social({
+                provider: 'google',
+              });
+            }}
           >
             <Image
               src="/logos/google-icon.svg"
