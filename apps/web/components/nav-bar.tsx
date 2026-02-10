@@ -1,7 +1,7 @@
-import { Button } from '@workspace/ui/button';
 import { Logo } from './logo';
 import { NavMenu } from './nav-menu';
 import { NavigationSheet } from './navigation-sheet';
+import { NavBarActions } from './nav-bar-actions';
 
 export function Navbar() {
   return (
@@ -13,14 +13,7 @@ export function Navbar() {
         <NavMenu className="hidden md:block" />
 
         <div className="flex items-center gap-3">
-          <Button
-            className="hidden rounded-full sm:inline-flex"
-            variant="outline"
-          >
-            Sign In
-          </Button>
-          <Button className="rounded-full">Get Started</Button>
-
+          <NavBarActions />
           {/* Mobile Menu */}
           <div className="md:hidden">
             <NavigationSheet />
