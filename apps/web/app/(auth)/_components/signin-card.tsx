@@ -56,21 +56,6 @@ export const SignInCard = () => {
                 />
                 Poursuivre avec Google
               </Button>
-              <Button
-                type="button"
-                className="w-full text-lg gap-4"
-                size="lg"
-                variant="secondary"
-              >
-                <Image
-                  src="/logos/microsoft-icon.svg"
-                  alt=""
-                  aria-hidden="true"
-                  width={28}
-                  height={28}
-                />
-                Poursuivre avec Microsoft
-              </Button>
             </CardFooter>
           }
         />

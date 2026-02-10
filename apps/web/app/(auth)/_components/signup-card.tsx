@@ -18,11 +18,20 @@ export function SignupCard() {
           : { ok: true };
       }}
       onSubmit={async (values) => {
-        await signUp.email({
+        const { error } = await signUp.email({
           email: values.email,
           password: values.password,
           name: values.email,
         });
+
+        if (error) {
+          return {
+            ok: false,
+            error: new Error("Erreur lors de l'inscription"),
+          };
+        }
+
+        return { ok: true };
       }}
       footer={
         <CardFooter className="flex flex-col gap-2 bg-transparent px-0 pt-6">
@@ -40,21 +49,6 @@ export function SignupCard() {
               height={24}
             />
             Poursuivre avec Google
-          </Button>
-          <Button
-            type="button"
-            className="w-full text-lg gap-4"
-            size="lg"
-            variant="secondary"
-          >
-            <Image
-              src="/logos/microsoft-icon.svg"
-              alt=""
-              aria-hidden="true"
-              width={28}
-              height={28}
-            />
-            Poursuivre avec Microsoft
           </Button>
         </CardFooter>
       }
